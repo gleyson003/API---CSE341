@@ -1,11 +1,15 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 const { connectDB, getDB } = require('./db');
+const cors = require('cors');
+const professionalRoutes = require('./routes/professional');
 
+
+const port = 8080;
 app.use(express.json());
 
-app.use('/', require('./routes'))
+app.use(cors());
+app.use('/professional', professionalRoutes);
 
 // MongoDb Connection
 connectDB().then(() => {

@@ -2,7 +2,7 @@ require('dotenv').config();
 const { MongoClient } = require('mongodb');
 
 const uri = process.env.MONGO_URI;
-const dbName = "teste_gleyson"; // Nome do seu banco de dados
+const dbName = "users"; // Nome do seu banco de dados
 
 let db;
 
