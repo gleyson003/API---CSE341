@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const { connectDB, getDB } = require('./db');
+const { connectDB, getDB } = require('./data/db');
 const cors = require('cors');
 const professionalRoutes = require('./routes/professional');
 const contactsRoutes = require('./routes/contacts');
