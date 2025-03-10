@@ -1,0 +1,14 @@
+### Test GET
+GET https://cse341-api-service.onrender.com/contacts
+Content-Type: application/json
+
+### Test GET single
+GET https://cse341-api-service.onrender.com/contacts/67ccb6c3fcb866804bb2ab1e
+Content-Type: application/json
+
+### Test POST
+
+### Test PUT
+
+### Test DELETE
+
