@@ -1,13 +1,13 @@
 ### Test GET
-GET http://localhost:3000/contacts/
+GET https://cse341-api-service.onrender.com/contacts/
 Content-Type: application/json
 
 ### Test GET single
-GET http://localhost:3000/contacts/67ccb6c3fcb866804bb2ab1e
+GET https://cse341-api-service.onrender.com/contacts/67ccb6c3fcb866804bb2ab1e
 Content-Type: application/json
 
 ### Teste POST
-POST http://localhost:3000/contacts
+POST https://cse341-api-service.onrender.com/contacts
 Content-Type: application/json
 
 {
@@ -19,7 +19,7 @@ Content-Type: application/json
 }
 
 ### Test PUT
-PUT http://localhost:3000/contacts/67ccb6c3fcb866804bb2ab1e
+PUT https://cse341-api-service.onrender.com/contacts/67ccb6c3fcb866804bb2ab1e
 Content-Type: application/json
 
 {
@@ -31,5 +31,5 @@ Content-Type: application/json
 }
 
 ### Test DELETE
-DELETE http://localhost:3000/contacts/67d37d3ea1e0c863d40363cf
+DELETE https://cse341-api-service.onrender.com/contacts/67d37d3ea1e0c863d40363cf
 Content-Type: application/json
