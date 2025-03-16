@@ -1,16 +1,21 @@
 const express = require('express');
-const app = express();
 const { connectDB, getDB } = require('./data/db');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const app = express();
 const professionalRoutes = require('./routes/professional');
 const contactsRoutes = require('./routes/contacts');
+const swaggerSetup = require("./swagger");
 
+const port = process.env.PORT || 3000;
 
-
-const port = 8080;
-app.use(express.json());
 
 app.use(cors());
+app.use(bodyParser.json());
+app.use(express.json());
+swaggerSetup(app);
+
+// Routes
 app.use('/professional', professionalRoutes);
 app.use('/contacts', contactsRoutes);
 
@@ -33,5 +38,6 @@ connectDB().then(() => {
 });
 
 app.listen(process.env.PORT || port, () => {
-  console.log('Web Server is listening at port ' + (process.env.PORT || 8080));
+  console.log('Web Server is listening at port ' + (process.env.PORT || 3000));
+  console.log("Documentation available in http://localhost:3000/api-docs");
 });
