@@ -1,35 +1,32 @@
 ### Test GET
-GET https://cse341-api-service.onrender.com/contacts/
+GET http://localhost:3000/pets/
 Content-Type: application/json
 
 ### Test GET single
-GET https://cse341-api-service.onrender.com/contacts/67ccb6c3fcb866804bb2ab1e
+GET http://localhost:3000/pets/67dde9510f2121f14dade951
 Content-Type: application/json
 
 ### Teste POST
-POST https://cse341-api-service.onrender.com/contacts
+POST http://localhost:3000/pets
 Content-Type: application/json
 
 {
-    "firstName": "Roseane",
-    "lastName": "Trindade",
-    "email": "roseanetrindade@gmail.com",
-    "favoriteColor": "pink",
-    "birthday": "1999-04-10"
+  "name": "zoe",
+  "favoriteFood": "wet food",
+  "birthday": "2022-02-07",
+  "tutor_id": "67ccb93fc977bdb9c1ff37d3"
 }
 
 ### Test PUT
-PUT https://cse341-api-service.onrender.com/contacts/67ccb6c3fcb866804bb2ab1e
+PUT http://localhost:3000/pets/67ddddeea1af54163f62b76e
 Content-Type: application/json
 
 {
-    "firstName":"Stephany",
-    "lastName":"Lopes",
-    "email":"stephanylopes434@gmail.com",
-    "favoriteColor":"turquoise",
-    "birthday":"1999-04-18"
+    "name": "Mailow",
+    "favoriteFood": "Chicken",
+    "birthday": "2016-08-01"
 }
 
 ### Test DELETE
-DELETE https://cse341-api-service.onrender.com/contacts/67d37d3ea1e0c863d40363cf
+DELETE http://localhost:3000/pets/67dde9510f2121f14dade951
 Content-Type: application/json

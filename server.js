@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const professionalRoutes = require('./routes/professional');
 const contactsRoutes = require('./routes/contacts');
+const petsRoutes = require('./routes/pets');
 const swaggerSetup = require("./swagger");
 
 const port = process.env.PORT || 3000;
@@ -18,26 +19,16 @@ swaggerSetup(app);
 // Routes
 app.use('/professional', professionalRoutes);
 app.use('/contacts', contactsRoutes);
+app.use('/pets', petsRoutes);
 
 // MongoDb Connection
 connectDB().then(() => {
-  app.get('/', (req, res) => {
-    res.send('Start API...');
+  app.listen(port, () => {
+      console.log(`Web Server is listening at port ${port}`);
+      console.log("Documentation available at http://localhost:3000/api-docs");
   });
-
-  app.get('/dados', async (req, res) => {
-    try {
-      const db = getDB();
-      const collection = db.collection("minhaColecao");
-      const data = await collection.find().toArray();
-      res.json(data);
-    } catch (error) {
-      res.status(500).json({ erro: "Error to get data" });
-    }
-  });
+}).catch(error => {
+  console.error("Error connecting to the database:", error);
+  process.exit(1);
 });
 
-app.listen(process.env.PORT || port, () => {
-  console.log('Web Server is listening at port ' + (process.env.PORT || 3000));
-  console.log("Documentation available in http://localhost:3000/api-docs");
-});
