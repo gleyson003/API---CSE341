@@ -32,6 +32,14 @@ app.use((err, req, res, next) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send(`
+    <h1>Bem-vindo à API CSE341</h1>
+    <p>Access the API documentation through the link:</p>
+    <a href="/api-docs" target="_blank">📄 API documentation</a>
+  `);
+});
+
 // MongoDb Connection
 connectDB().then(() => {
   app.listen(port, () => {
