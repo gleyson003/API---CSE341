@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
 
 app.get("/", (req, res) => {
   res.send(`
-    <h1>Bem-vindo à API CSE341</h1>
+    <h1>Welcome to CSE341 API</h1>
     <p>Access the API documentation through the link:</p>
     <a href="/api-docs" target="_blank">📄 API documentation</a>
   `);
