@@ -13,6 +13,9 @@ const options = {
       {
         url: "https://cse341-api-service.onrender.com",
       },
+      {
+        url: "http://localhost:3000/",
+      },
     ],
   },
   apis: ["./routes/*.js"],

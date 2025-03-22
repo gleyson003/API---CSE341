@@ -1,15 +1,16 @@
 const express = require('express');
-const { connectDB, getDB } = require('./data/db');
 const cors = require('cors');
-const bodyParser = require('body-parser');
+const { connectDB } = require('./data/db');
+
 const app = express();
+const bodyParser = require('body-parser');
+const swaggerSetup = require("./swagger");
+
 const professionalRoutes = require('./routes/professional');
 const contactsRoutes = require('./routes/contacts');
 const petsRoutes = require('./routes/pets');
-const swaggerSetup = require("./swagger");
 
 const port = process.env.PORT || 3000;
-
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -20,6 +21,16 @@ swaggerSetup(app);
 app.use('/professional', professionalRoutes);
 app.use('/contacts', contactsRoutes);
 app.use('/pets', petsRoutes);
+
+//Middleware global Error:
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+
+  res.status(err.statusCode || 500).json({
+      success: false,
+      message: err.message || 'Internal server error',
+  });
+});
 
 // MongoDb Connection
 connectDB().then(() => {

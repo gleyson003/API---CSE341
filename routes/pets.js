@@ -1,6 +1,7 @@
 const express = require('express');
 const petsController = require('../controllers/pets');
 const router = express.Router();
+const asyncHandler = require('../utils/asyncHandler');
 
 /**
  * @swagger
@@ -34,7 +35,7 @@ const router = express.Router();
  *                     type: string
  *                     description: The ID of the pet's tutor (optional).
 */
-router.get('/', petsController.getAll);
+router.get('/', asyncHandler(petsController.getAll));
 
 /**
  * @swagger
@@ -75,7 +76,7 @@ router.get('/', petsController.getAll);
  *       404:
  *         description: Pet not found.
 */
-router.get('/:id', petsController.getSingle);
+router.get('/:id', asyncHandler(petsController.getSingle));
 
 /**
  * @swagger
@@ -111,7 +112,7 @@ router.get('/:id', petsController.getSingle);
  *       400:
  *         description: Invalid input data!
 */
-router.post('/', petsController.createPet);
+router.post('/', asyncHandler(petsController.createPet));
 
 /**
  * @swagger
@@ -153,7 +154,7 @@ router.post('/', petsController.createPet);
  *       404:
  *         description: Pet not found.
 */
-router.put('/:id', petsController.updatePet);
+router.put('/:id', asyncHandler(petsController.updatePet));
 
 /**
  * @swagger
@@ -174,6 +175,6 @@ router.put('/:id', petsController.updatePet);
  *       404:
  *         description: Pet not found.
 */
-router.delete('/:id', petsController.deletePet);
+router.delete('/:id', asyncHandler(petsController.deletePet));
 
 module.exports = router;

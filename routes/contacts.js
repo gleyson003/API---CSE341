@@ -1,6 +1,7 @@
 const express = require('express');
 const contactsController = require('../controllers/contacts');
 const router = express.Router();
+const asyncHandler = require('../utils/asyncHandler');
 
 /**
  * @swagger
@@ -12,7 +13,7 @@ const router = express.Router();
  *       200:
  *         description: Contacts list retrieved successfully.
  */
-router.get('/', contactsController.getAll);
+router.get('/', asyncHandler(contactsController.getAll));
 
 /**
  * @swagger
@@ -33,7 +34,7 @@ router.get('/', contactsController.getAll);
  *       404:
  *         description: Contact not found.
  */
-router.get('/:id', contactsController.getSingle);
+router.get('/:id', asyncHandler(contactsController.getSingle));
 
 /**
  * @swagger
@@ -65,7 +66,7 @@ router.get('/:id', contactsController.getSingle);
  *       400:
  *         description: Invalid input data!
  */
-router.post('/', contactsController.createContact);
+router.post('/', asyncHandler(contactsController.createContact));
 
 /**
  * @swagger
@@ -104,7 +105,7 @@ router.post('/', contactsController.createContact);
  *       404:
  *         description: Contact could not be updated!
  */
-router.put('/:id', contactsController.updateContact);
+router.put('/:id', asyncHandler(contactsController.updateContact));
 
 /**
  * @swagger
@@ -125,6 +126,6 @@ router.put('/:id', contactsController.updateContact);
  *       404:
  *         description: Contact could not be found.
  */
-router.delete('/:id', contactsController.deleteContact);
+router.delete('/:id', asyncHandler(contactsController.deleteContact));
 
 module.exports = router;
