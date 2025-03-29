@@ -31,14 +31,14 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
-app.use("/auth", authRoutes)
+app.use("/auth", authRoutes);
 
 // Routes
 app.use('/professional', professionalRoutes);
 app.use('/contacts', contactsRoutes);
 app.use('/pets', petsRoutes);
 
-//Middleware global Error:
+// Middleware globla error
 app.use((err, req, res, next) => {
   console.error(err.stack);
 
@@ -47,6 +47,7 @@ app.use((err, req, res, next) => {
       message: err.message || 'Internal server error',
   });
 });
+
 
 app.get("/", (req, res) => {
   res.send(`
@@ -66,4 +67,3 @@ connectDB().then(() => {
   console.error("Error connecting to the database:", error);
   process.exit(1);
 });
-

@@ -2,6 +2,8 @@ const express = require('express');
 const petsController = require('../controllers/pets');
 const router = express.Router();
 const asyncHandler = require('../utils/asyncHandler');
+const authMiddleware = require("../middlewares/authMiddleware");
+
 
 /**
  * @swagger
@@ -112,7 +114,7 @@ router.get('/:id', asyncHandler(petsController.getSingle));
  *       400:
  *         description: Invalid input data!
 */
-router.post('/', asyncHandler(petsController.createPet));
+router.post('/', authMiddleware, asyncHandler(petsController.createPet));
 
 /**
  * @swagger
@@ -154,7 +156,7 @@ router.post('/', asyncHandler(petsController.createPet));
  *       404:
  *         description: Pet not found.
 */
-router.put('/:id', asyncHandler(petsController.updatePet));
+router.put('/:id', authMiddleware, asyncHandler(petsController.updatePet));
 
 /**
  * @swagger
@@ -175,6 +177,6 @@ router.put('/:id', asyncHandler(petsController.updatePet));
  *       404:
  *         description: Pet not found.
 */
-router.delete('/:id', asyncHandler(petsController.deletePet));
+router.delete('/:id', authMiddleware, asyncHandler(petsController.deletePet));
 
 module.exports = router;

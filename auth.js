@@ -1,6 +1,5 @@
 const passport = require("passport");
 const GitHubStrategy = require("passport-github2").Strategy;
-const jwt = require("jsonwebtoken");
 const User = require("./models/User");
 require("dotenv").config();
 
@@ -22,19 +21,21 @@ passport.use(new GitHubStrategy({
       await user.save();
     }
 
-    // criating a JWT to the user
-    const token = jwt.sign({ id: user._id, email: user.email }, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-    return done(null, { user, token });
+    return done(null, user);
   } catch (error) {
     return done(error, null);
   }
 }));
 
 passport.serializeUser((user, done) => {
-  done(null, user);
+  done(null, user.id);  
 });
 
-passport.deserializeUser((obj, done) => {
-  done(null, obj);
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+    return done(null, user);
+  } catch (err) {
+    return done(err, null);
+  }
 });

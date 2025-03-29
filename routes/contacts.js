@@ -15,7 +15,7 @@ const authMiddleware = require("../middlewares/authMiddleware");
  *       200:
  *         description: Contacts list retrieved successfully.
  */
-router.get('/', authMiddleware, asyncHandler(contactsController.getAll));
+router.get('/', asyncHandler(contactsController.getAll));
 
 /**
  * @swagger
@@ -36,7 +36,7 @@ router.get('/', authMiddleware, asyncHandler(contactsController.getAll));
  *       404:
  *         description: Contact not found.
  */
-router.get('/:id', authMiddleware, asyncHandler(contactsController.getSingle));
+router.get('/:id', asyncHandler(contactsController.getSingle));
 
 /**
  * @swagger
