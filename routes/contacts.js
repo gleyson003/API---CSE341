@@ -2,6 +2,8 @@ const express = require('express');
 const contactsController = require('../controllers/contacts');
 const router = express.Router();
 const asyncHandler = require('../utils/asyncHandler');
+const authMiddleware = require("../middlewares/authMiddleware");
+
 
 /**
  * @swagger
@@ -13,7 +15,7 @@ const asyncHandler = require('../utils/asyncHandler');
  *       200:
  *         description: Contacts list retrieved successfully.
  */
-router.get('/', asyncHandler(contactsController.getAll));
+router.get('/', authMiddleware, asyncHandler(contactsController.getAll));
 
 /**
  * @swagger
@@ -34,7 +36,7 @@ router.get('/', asyncHandler(contactsController.getAll));
  *       404:
  *         description: Contact not found.
  */
-router.get('/:id', asyncHandler(contactsController.getSingle));
+router.get('/:id', authMiddleware, asyncHandler(contactsController.getSingle));
 
 /**
  * @swagger
@@ -66,7 +68,7 @@ router.get('/:id', asyncHandler(contactsController.getSingle));
  *       400:
  *         description: Invalid input data!
  */
-router.post('/', asyncHandler(contactsController.createContact));
+router.post('/', authMiddleware, asyncHandler(contactsController.createContact));
 
 /**
  * @swagger
@@ -105,7 +107,7 @@ router.post('/', asyncHandler(contactsController.createContact));
  *       404:
  *         description: Contact could not be updated!
  */
-router.put('/:id', asyncHandler(contactsController.updateContact));
+router.put('/:id', authMiddleware, asyncHandler(contactsController.updateContact));
 
 /**
  * @swagger
@@ -126,6 +128,6 @@ router.put('/:id', asyncHandler(contactsController.updateContact));
  *       404:
  *         description: Contact could not be found.
  */
-router.delete('/:id', asyncHandler(contactsController.deleteContact));
+router.delete('/:id', authMiddleware, asyncHandler(contactsController.deleteContact));
 
 module.exports = router;

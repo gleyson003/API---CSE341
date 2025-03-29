@@ -10,12 +10,28 @@ const professionalRoutes = require('./routes/professional');
 const contactsRoutes = require('./routes/contacts');
 const petsRoutes = require('./routes/pets');
 
+const session = require("express-session");
+const passport = require("passport");
+require("./auth");
+const authRoutes = require("./routes/auth");
+
 const port = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
+
 swaggerSetup(app);
+
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use("/auth", authRoutes)
 
 // Routes
 app.use('/professional', professionalRoutes);

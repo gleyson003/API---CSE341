@@ -17,6 +17,17 @@ const options = {
         url: "http://localhost:3000/",
       },
     ],
+    components: {
+      securitySchemes: {
+        Bearer: {
+          type: "http",
+          scheme: "bearer",
+          bearerFormat: "JWT",
+          description: "Token JWT is necessary."
+        }
+      }
+    },
+    security: [{ Bearer: [] }]
   },
   apis: ["./routes/*.js"],
 };
